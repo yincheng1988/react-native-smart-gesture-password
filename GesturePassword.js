@@ -6,9 +6,9 @@
  */
 
 import React, {
-    PropTypes,
     Component,
 } from 'react'
+import PropTypes from 'prop-types'
 import {
     PanResponder,
     Dimensions,
@@ -36,6 +36,7 @@ const {width: deviceWidth, height: deviceHeight} = Dimensions.get('window')
 export default class GesturePassword extends Component {
 
     static defaultProps = {
+        navigationBarMargin: 64,
         lineWidth: 10,
         pointBackgroundColor: 'transparent',
         gestureAreaLength: 222,
@@ -50,6 +51,7 @@ export default class GesturePassword extends Component {
     }
 
     static propTypes = {
+        navigationBarMargin: PropTypes.number,
         lineWidth: PropTypes.number,
         pointBackgroundColor: PropTypes.string,
         gestureAreaLength: PropTypes.number,
@@ -139,7 +141,7 @@ export default class GesturePassword extends Component {
 
     _onLayout = (e) => {
         this._gestureAreaLeft = e.nativeEvent.layout.x
-        this._gestureAreaTop = e.nativeEvent.layout.y
+        this._gestureAreaTop = e.nativeEvent.layout.y + this.props.navigationBarMargin
         this._initializePoints()
     }
 
